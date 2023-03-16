@@ -58,7 +58,7 @@ function Home() {
             color="#fff"
             mb={3}
           >
-            Your Neighborhood Dealer
+            Experience Luxury Driven Performance
           </Typography>
           <Button
             size={isSm ? "small" : "large"}
@@ -158,7 +158,7 @@ function Home() {
         <Grid container spacing={5}>
           <Grid item md={9}>
             <Typography variant="h4">
-              HIGH SPEC CARS, Your Neighborhood Dealer
+              HIGH SPEC CARS, Experience Luxury Driven Performance
             </Typography>
             <Typography variant="h5">Welcome to HIGH SPEC CARS</Typography>
             <Typography>

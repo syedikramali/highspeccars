@@ -3,7 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   suppressHydrationWarning: true,
   images: {
-    domains: ["static.wixstatic.com", "swiperjs.com"],
+    domains: [
+      "static.wixstatic.com",
+      "swiperjs.com",
+      "silsoeprestigemotors.co.uk",
+    ],
   },
   async redirects() {
     return [

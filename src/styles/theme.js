@@ -13,6 +13,9 @@ export const darkTheme = createTheme({
   palette: {
     mode: "dark",
   },
+  typography: {
+    fontFamily: "'Poppins', sans-serif",
+  },
 });
 
 export const lightTheme = createTheme({
@@ -27,5 +30,8 @@ export const lightTheme = createTheme({
   },
   palette: {
     mode: "light",
+  },
+  typography: {
+    fontFamily: "'Poppins', sans-serif",
   },
 });

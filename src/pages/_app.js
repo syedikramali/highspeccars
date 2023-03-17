@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "../styles/globals.css";
 import createEmotionCache from "../utility/createEmotionCache";
+import "@fontsource/poppins"
 
 const clientSideEmotionCache = createEmotionCache();
 const queryClient = new QueryClient();

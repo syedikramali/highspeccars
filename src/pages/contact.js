@@ -2,11 +2,13 @@ import { CONTACT } from "@/constants";
 import { Call, Email, LocationOn } from "@mui/icons-material";
 import {
   Box,
+  Button,
   Container,
   Divider,
   Grid,
   Paper,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
 import { Fragment } from "react";
@@ -103,7 +105,6 @@ function contact() {
                 </Typography>
               </Stack>
 
-
               <Typography
                 mt={3}
                 mb={1}
@@ -162,7 +163,58 @@ function contact() {
         </Grid>
       </Box>
 
-      <Container></Container>
+      <Container sx={{ textAlign: "center", pb: 5 }}>
+        <Typography align="center" variant="h4" mb={5}>
+          Drop us a message
+        </Typography>
+        <Stack spacing={5} px={20}>
+          <TextField
+            fullWidth
+            label="Full Name"
+            variant="standard"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            fullWidth
+            required
+            label="Email"
+            variant="standard"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            fullWidth
+            required
+            multiline
+            label="Message"
+            variant="standard"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            rows={5}
+          />
+        </Stack>
+        <Button
+          variant="contained"
+          sx={{
+            px: 10,
+            borderRadius: "50px",
+            background: "red",
+            color: "#fff",
+            fontSize: "20px",
+            mt: 10,
+            "&:hover": {
+              backgroundColor: "red",
+            },
+          }}
+          size="large"
+        >
+          Send
+        </Button>
+      </Container>
     </Fragment>
   );
 }

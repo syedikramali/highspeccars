@@ -97,14 +97,34 @@ function Reviews() {
       >
         Our Testimonials
       </Typography>
-      <Box sx={{ height: "50vh" }}>
+      <Box
+        sx={{
+          height: "50vh",
+          "& .swiper": { width: "100%", height: "100%", alignItems: "center" },
+          "& .swiper-slide": {
+            textAlign: "center",
+            fontSize: "18px",
+            background: "#fff",
+            height: "fit-content !important",
+            display: "flex",
+            justifyContent: "center",
+            userSelect: "none",
+            backgroundColor: "transparent",
+          },
+          "& .swiper-wrapper": { alignItems: "center" },
+        }}
+      >
         <Swiper
           slidesPerView={isXs ? 1 : isSm ? 2 : 3}
           spaceBetween={30}
-          pagination={{
-            clickable: true,
-            dynamicBullets: isSm || isXs ? true : false,
-          }}
+          pagination={
+            isSm || isXs
+              ? false
+              : {
+                  clickable: true,
+                  dynamicBullets: isSm || isXs ? true : false,
+                }
+          }
           style={{
             "--swiper-pagination-color": "#FFBA08",
             "--swiper-pagination-bullet-inactive-color": "#999999",

@@ -7,6 +7,7 @@ const nextConfig = {
       "static.wixstatic.com",
       "swiperjs.com",
       "silsoeprestigemotors.co.uk",
+      "images.pexels.com",
     ],
   },
   async redirects() {

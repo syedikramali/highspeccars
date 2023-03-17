@@ -1,6 +1,8 @@
+import HeroSlider from "@/components/HeroSlider";
 import RangeSlider from "@/components/RangeSlider";
 import Reviews from "@/components/Reviews";
 import SelectInput from "@/components/SelectInput";
+import { CONTACT } from "@/constants";
 import useScreenWidth from "@/hooks/useScreenWidth";
 import useThemeMode from "@/hooks/useThemeMode";
 import { darkTheme, lightTheme } from "@/styles/theme";
@@ -10,20 +12,19 @@ import {
   Divider,
   Grid,
   Paper,
-  Stack,
   ThemeProvider,
   Typography,
-  useTheme,
 } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 function Home() {
   const { isSm } = useScreenWidth();
-  console.log("🚀 ~ file: home.js:21 ~ Home ~ isSm:", isSm);
   const { isLightMode } = useThemeMode();
   return (
     <div>
-      <Box
+      <HeroSlider />
+      {/* <Box
         sx={{
           backgroundImage:
             "url(https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
@@ -66,7 +67,6 @@ function Home() {
               color: "#000",
               backgroundColor: "#fff",
               borderRadius: "10%",
-              // px: isSm10,
               width: { md: "28%", sm: "50%", xs: "100%" },
               fontWeight: "bolder",
               fontSize: isSm ? "16px" : "20px",
@@ -79,7 +79,7 @@ function Home() {
             Browse our showroom
           </Button>
         </Box>
-      </Box>
+      </Box> */}
 
       <Box sx={{ pb: 5, pt: 3, px: isSm ? 2 : 10 }}>
         <Typography variant="h5" mb={2} align="center">
@@ -103,7 +103,7 @@ function Home() {
               }
               alignItems="center"
             >
-              <Grid item md={4} xs={12}>
+              <Grid item md={3} xs={12}>
                 <SelectInput
                   options={[
                     { label: "Any make (63)", value: "all" },
@@ -117,7 +117,7 @@ function Home() {
                   ]}
                 />
               </Grid>
-              <Grid item md={4} xs={12}>
+              <Grid item md={3} xs={12}>
                 <SelectInput
                   options={[
                     { label: "Any model (7)", value: "all" },
@@ -128,7 +128,7 @@ function Home() {
                   ]}
                 />
               </Grid>
-              <Grid item md={4} xs={12}>
+              <Grid item md={6} xs={12}>
                 <RangeSlider />
               </Grid>
             </Grid>
@@ -147,6 +147,8 @@ function Home() {
                 backgroundColor: "red",
               },
             }}
+            LinkComponent={Link}
+            href="/search"
             size="large"
           >
             Search
@@ -164,50 +166,53 @@ function Home() {
             <Typography>
               High Spec Cars Ltd provides a wide range of pre-owned vehicles to
               purchase. We are sure to have something in stock to meet
-              everyone's needs. Ready to set up a test drive? Stop by High Spec
-              Cars and get behind the driver's seat today.
+              everyone&apos;s needs. Ready to set up a test drive? Stop by High
+              Spec Cars and get behind the driver&apos;s seat today.
             </Typography>
             <br />
             <Typography>
               High Spec Cars Ltd provides a wide range of pre-owned vehicles to
               purchase. We are sure to have something in stock to meet
-              everyone's needs. Ready to set up a test drive? Stop by High Spec
-              Cars and get behind the driver's seat today. High Spec Cars Ltd
+              everyone&apos;s needs. Ready to set up a test drive? Stop by High
+              Spec Cars and get behind the driver&apos;s seat today. High Spec
+              Cars Ltd provides a wide range of pre-owned vehicles to purchase.
+              We are sure to have something in stock to meet everyone&apos;s
+              needs. Ready to set up a test drive? Stop by High Spec Cars and
+              get behind the driver&apos;s seat today. High Spec Cars Ltd
               provides a wide range of pre-owned vehicles to purchase. We are
-              sure to have something in stock to meet everyone's needs. Ready to
-              set up a test drive? Stop by High Spec Cars and get behind the
-              driver's seat today. High Spec Cars Ltd provides a wide range of
-              pre-owned vehicles to purchase. We are sure to have something in
-              stock to meet everyone's needs. Ready to set up a test drive? Stop
-              by High Spec Cars and get behind the driver's seat today.
+              sure to have something in stock to meet everyone&apos;s needs.
+              Ready to set up a test drive? Stop by High Spec Cars and get
+              behind the driver&apos;s seat today.
             </Typography>
             <br />
             <Typography>
               High Spec Cars Ltd provides a wide range of pre-owned vehicles to
               purchase. We are sure to have something in stock to meet
-              everyone's needs. Ready to set up a test drive? Stop by High Spec
-              Cars and get behind the driver's seat today. High Spec Cars Ltd
+              everyone&apos;s needs. Ready to set up a test drive? Stop by High
+              Spec Cars and get behind the driver&apos;s seat today. High Spec
+              Cars Ltd provides a wide range of pre-owned vehicles to purchase.
+              We are sure to have something in stock to meet everyone&apos;s
+              needs. Ready to set up a test drive? Stop by High Spec Cars and
+              get behind the driver&apos;s seat today. High Spec Cars Ltd
               provides a wide range of pre-owned vehicles to purchase. We are
-              sure to have something in stock to meet everyone's needs. Ready to
-              set up a test drive? Stop by High Spec Cars and get behind the
-              driver's seat today. High Spec Cars Ltd provides a wide range of
-              pre-owned vehicles to purchase. We are sure to have something in
-              stock to meet everyone's needs. Ready to set up a test drive? Stop
-              by High Spec Cars and get behind the driver's seat today.
+              sure to have something in stock to meet everyone&apos;s needs.
+              Ready to set up a test drive? Stop by High Spec Cars and get
+              behind the driver&apos;s seat today.
             </Typography>
 
             <Typography>
               High Spec Cars Ltd provides a wide range of pre-owned vehicles to
               purchase. We are sure to have something in stock to meet
-              everyone's needs. Ready to set up a test drive? Stop by High Spec
-              Cars and get behind the driver's seat today. High Spec Cars Ltd
+              everyone&apos;s needs. Ready to set up a test drive? Stop by High
+              Spec Cars and get behind the driver&apos;s seat today. High Spec
+              Cars Ltd provides a wide range of pre-owned vehicles to purchase.
+              We are sure to have something in stock to meet everyone&apos;s
+              needs. Ready to set up a test drive? Stop by High Spec Cars and
+              get behind the driver&apos;s seat today. High Spec Cars Ltd
               provides a wide range of pre-owned vehicles to purchase. We are
-              sure to have something in stock to meet everyone's needs. Ready to
-              set up a test drive? Stop by High Spec Cars and get behind the
-              driver's seat today. High Spec Cars Ltd provides a wide range of
-              pre-owned vehicles to purchase. We are sure to have something in
-              stock to meet everyone's needs. Ready to set up a test drive? Stop
-              by High Spec Cars and get behind the driver's seat today.
+              sure to have something in stock to meet everyone&apos;s needs.
+              Ready to set up a test drive? Stop by High Spec Cars and get
+              behind the driver&apos;s seat today.
             </Typography>
           </Grid>
           <Grid item md={3} xs={12}>
@@ -245,11 +250,11 @@ function Home() {
                   src="/assets/email.svg"
                   alt="email"
                 />
-                <Typography color="text.secondary">
+                <Typography color="text.secondary" noWrap={false}>
                   Drop us a mail on -
                 </Typography>
                 <Typography color="text.main" fontWeight={"bolder"}>
-                  a@highspeccars.com
+                  {/* {CONTACT.email} */}
                 </Typography>
               </Grid>
             </Grid>

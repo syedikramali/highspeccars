@@ -2,7 +2,7 @@ import { MenuItem, Select } from "@mui/material";
 import { map } from "lodash";
 import React, { Children, useState } from "react";
 
-function SelectInput({ options }) {
+function SelectInput({ options, ...props }) {
   const [value, setValue] = useState("all");
 
   return (
@@ -16,6 +16,7 @@ function SelectInput({ options }) {
           borderRadius: 4,
         },
       }}
+      {...props}
     >
       {Children.toArray(
         map(options, ({ label, value: val }) => {

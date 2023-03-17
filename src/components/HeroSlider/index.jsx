@@ -13,7 +13,7 @@ function HeroSlider() {
   return (
     <Paper
       sx={{
-        height: "80vh",
+        height: isSm ? "40vh" : "80vh",
         position: "relative",
         "& *": { userSelect: "none" },
         "& .swiper": { width: "100%", height: "100%" },
@@ -80,7 +80,7 @@ function HeroSlider() {
       </Box>
       <Swiper
         loop
-        navigation={true}
+        navigation={isSm ? false : true}
         modules={[Autoplay, Navigation]}
         className="mySwiper"
         style={{

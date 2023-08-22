@@ -1,49 +1,100 @@
-import { Box, Divider, Paper, Stack, Typography } from "@mui/material";
-import { map } from "lodash";
+import { WORKING_HRS } from "@/constants";
+import useScreenWidth from "@/hooks/useScreenWidth";
+import { CalendarMonth, Event } from "@mui/icons-material";
+import {
+  Box,
+  Divider,
+  Grid,
+  Paper,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  Typography,
+} from "@mui/material";
+import { map, size } from "lodash";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { Children } from "react";
 
 function Footer() {
+  const { pathname } = useRouter();
+  const { isSm } = useScreenWidth();
   return (
     <Paper>
-      <Box p={2}>
+      <Box p={3}>
         <Typography variant="h5">Company Info</Typography>
         <Divider sx={{ mt: 1, mb: 2 }} />
-        <Typography color="text.secondary" variant="body2">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto
-          accusantium facere ipsam error voluptates! Minima voluptas quod
-          officia veniam magnam velit, exercitationem consectetur cumque
-          accusamus alias explicabo quibusdam, tenetur eum repudiandae quas
-          itaque error impedit nulla ipsam vitae cupiditate ut provident
-          architecto reprehenderit! Nam impedit repellendus molestias tempore,
-          ab distinctio iusto eius nobis est sapiente itaque voluptates
-          accusantium at aut doloremque alias, fuga optio quia quos rem velit
-          non veritatis deserunt! Qui illo non quaerat dolore molestias dolores,
-          quam officiis quos ut dicta quo libero reprehenderit porro, placeat
-          saepe totam sequi explicabo delectus vero esse commodi optio? Fugit,
-          ipsum vel!
-        </Typography>
-        <br />
-        <Typography color="text.secondary" variant="body2">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto
-          accusantium facere ipsam error voluptates! Minima voluptas quod
-          officia veniam magnam velit, exercitationem consectetur cumque
-          accusamus alias explicabo quibusdam, tenetur eum repudiandae quas
-          itaque error impedit nulla ipsam vitae cupiditate ut provident
-          architecto reprehenderit! Nam impedit repellendus molestias tempore,
-          ab distinctio iusto eius nobis est sapiente itaque voluptates
-          accusantium at aut doloremque alias, fuga optio quia quos rem velit
-          non veritatis deserunt! Qui illo non quaerat dolore molestias dolores,
-          quam officiis quos ut dicta quo libero reprehenderit porro, placeat
-          saepe totam sequi explicabo delectus vero esse commodi optio? Fugit,
-          ipsum vel!
-        </Typography>
+        <Grid container spacing={isSm ? 3 : 5}>
+          <Grid item md={9} xs={12}>
+            <Typography>Company No. 14404539 </Typography>
+            <Typography
+              color="text.secondary"
+              variant="body2"
+              pt={1}
+              align="justify"
+            >
+              HIGH SPEC CAR SALES AND DETAILING LTD is authorised and regulated.
+              All finance is subject to status and income. Written Quotation on
+              request. We act as a credit broker, not a lender. We work with
+              several carefully selected credit providers who may be able to
+              offer you finance for your purchase. We are only able to offer
+              finance products from these providers.
+            </Typography>
+          </Grid>
+          <Grid item md={3} xs={12}>
+            <Typography>Opening Hours</Typography>
+            <Table size="small" padding="none">
+              <TableBody>
+                {Children.toArray(
+                  map(WORKING_HRS, ({ day, time }, index) => {
+                    let isLast = size(WORKING_HRS) === index + 1;
+                    return (
+                      <TableRow>
+                        <TableCell
+                          sx={{
+                            ...(isLast ? { borderBottom: 0 } : {}),
+                            py: 1,
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              columnGap: 0.5,
+                            }}
+                            color="text.secondary"
+                            variant="body2"
+                          >
+                            <CalendarMonth color="inherit" />
+                            {day}
+                          </Typography>
+                        </TableCell>
+                        <TableCell
+                          align="right"
+                          sx={{ ...(isLast ? { borderBottom: 0 } : {}), py: 1 }}
+                        >
+                          <Typography color="text.secondary" variant="body2">
+                            {time}
+                          </Typography>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })
+                )}
+              </TableBody>
+            </Table>
+          </Grid>
+        </Grid>
+
         <Divider sx={{ mt: 1, mb: 2 }} />
 
         <Stack
           alignItems={"center"}
-          direction="row"
-          spacing={2}
+          direction={isSm ? "column" : "row"}
+          spacing={isSm ? 0 : 2}
+          mt={isSm ? 5 : 0}
           divider={
             <Divider flexItem orientation="vertical" sx={{ mx: 0.5, my: 1 }} />
           }
@@ -51,16 +102,17 @@ function Footer() {
           {Children.toArray(
             map(
               [
-                { label: "Terms of Use", link: "/terms-of-use" },
-                { label: "Privacy", link: "/privacy" },
-                { label: "Cookies", link: "/cookies" },
-                { label: "Sitemap", link: "/sitemap" },
+                { label: "Terms of Use", link: "/app/terms-of-use" },
+                { label: "Privacy", link: "/app/privacy" },
+                { label: "Cookies", link: "/app/cookies" },
               ],
               ({ label, link }) => {
                 return (
                   <Typography
                     variant="body1"
-                    color="text.secondary"
+                    color={
+                      pathname === link ? "text.primary" : "text.secondary"
+                    }
                     fontWeight={"normal"}
                     component={Link}
                     href={link}

@@ -1,12 +1,17 @@
+import toPound from "@/utility/toPound";
 import { Slider, Stack, Switch, Typography } from "@mui/material";
-import React, { Fragment, useState } from "react";
+import { useEffect } from "react";
 
-function RangeSlider() {
-  const [range, setRange] = useState([30000, 60000]);
-  const onChange = (event, val) => {
-    setRange(val);
-  };
-  const [isPrice, setIsPrice] = useState(true);
+function RangeSlider({ setValue, value = {}, min, max }) {
+  useEffect(() => {
+    if (!value.min && !value.max) {
+      setValue({
+        type: "price",
+        min: min("price"),
+        max: max("price"),
+      });
+    }
+  }, [value]);
 
   return (
     <Stack width="100%" spacing={1}>
@@ -16,41 +21,42 @@ function RangeSlider() {
         alignItems={"center"}
       >
         <Typography>
-          Min:{" "}
-          {Intl.NumberFormat("en-GB", {
-            style: "currency",
-            currency: "GBP",
-          }).format(range[0])}
+          Min: {toPound(value.min)} {value.type === "finance" && "p/mo"}
         </Typography>
 
         <Stack direction="row" alignItems={"center"}>
           <Typography>Price</Typography>
           <Switch
-            checked={isPrice}
+            checked={value.type === "finance"}
             onChange={(event) => {
-              setIsPrice(event.target.checked);
-              setRange(event.target.checked ? [30000, 60000] : [500, 1200]);
+              setValue({
+                type: event.target.checked ? "finance" : "price",
+                min: min(event.target.checked ? "finance" : "price"),
+                max: max(event.target.checked ? "finance" : "price"),
+              });
             }}
           />
           <Typography>Finance</Typography>
         </Stack>
 
         <Typography>
-          Max:{" "}
-          {Intl.NumberFormat("en-GB", {
-            style: "currency",
-            currency: "GBP",
-          }).format(range[1])}
+          Max: {toPound(value.max)} {value.type === "finance" && "p/mo"}
         </Typography>
       </Stack>
       <Slider
         getAriaLabel={() => "Minimum distance shift"}
-        step={isPrice ? 1000 : 25}
-        min={isPrice ? 3000 : 150}
-        max={isPrice ? 80000 : 1575}
-        onChange={onChange}
+        step={value.type === "price" ? 1000 : 25}
+        min={min(value.type)}
+        max={max(value.type)}
+        onChange={(event, val) => {
+          setValue({
+            ...value,
+            min: val[0],
+            max: val[1],
+          });
+        }}
         disableSwap
-        value={range}
+        value={[value.min, value.max]}
         valueLabelDisplay="off"
       />
     </Stack>

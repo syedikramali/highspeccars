@@ -1,7 +1,10 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
+const moment = require("moment");
+const { toast } = require("react-hot-toast");
+const create = require("zustand").create;
+const persist = require("zustand/middleware").persist;
+const createJSONStorage = require("zustand/middleware").createJSONStorage;
 
-export const usePreference = create(
+const usePreference = create(
   persist(
     (set, get) => ({
       mode: "light",
@@ -15,3 +18,18 @@ export const usePreference = create(
     }
   )
 );
+
+const useAuth = create((set) => ({
+  auth: false,
+  validate: (code) => {
+    if (moment().format("hhmm") === code) {
+      set({ auth: true });
+      toast.success("Authentication successfull! Welcome.");
+    } else {
+      set({ auth: false });
+      toast.error("Invalid code! Try again.");
+    }
+  },
+}));
+
+module.exports = { useAuth, usePreference };
